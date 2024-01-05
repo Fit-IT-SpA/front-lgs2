@@ -1,0 +1,26 @@
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-xl-7" [ngStyle]="{'background-image': 'url(assets/images/login/2.jpg)',
+                                       'background-size': 'cover',
+                                       'background-position': 'center center',
+                                       'display': 'block'}">
+        <img class="bg-img-cover bg-center d-none" src="assets/images/login/2.jpg" alt="looginpage">
+      </div>
+      <div class="col-xl-5 p-0">
+        <div class="login-card">
+          <div>
+            <div>
+              <a class="logo text-left" href="#">
+                <img class="img-fluid for-light" src="assets/images/logo/logo_LGS.png" alt="looginpage">
+                <img class="img-fluid for-dark" src="assets/images/logo/logo_LGS.png" alt="looginpage">
+              </a>
+            </div>
+            <div class="login-main">
+                <h6>Session expired</h6>
+                <span>For security reasons your session has expired, please log in again, we will take you to login in <span>{{this.countdown}} seconds...</span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

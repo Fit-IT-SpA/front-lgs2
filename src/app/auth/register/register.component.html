@@ -1,0 +1,124 @@
+<div class="container-fluid p-0">
+    <div class="row">
+      <div class="col-12">     
+        <div class="login-card">
+          <div>
+            <div>
+              <a class="logo">
+                <img class="img-fluid for-light" src="assets/images/logo/logo_LGS.png" style=" max-width: 200px  !important; " alt="looginpage">
+                <img class="img-fluid for-dark" src="assets/images/logo/logo_LGS.png" style=" max-width: 200px" alt="looginpage">
+              </a>
+            </div>
+            <div class="login-main">
+              <form class="theme-form" [formGroup]="loginForm">
+                <h4>Create your account</h4>
+                <p>Enter your personal details to create account</p>
+                <div class="form-group">
+                  <label class="col-form-label pt-0">Your Name</label>
+                  <div class="row">
+                    <div class="col-6">
+                      <input class="form-control btn-pill" type="text" required="" placeholder="First name" formControlName="name">
+                      <div *ngIf="loginForm.controls.name.errors && loginForm.controls.name.touched && loginForm.controls.name.errors.required"
+                      class="text text-danger mt-1">
+                        First Name required
+                      </div>
+                      <div *ngIf="loginForm.controls.name.touched && loginForm.controls.name.errors?.maxlength"
+                      class="text text-danger mt-1">
+                        Max 30 caracters
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <input class="form-control btn-pill" type="text" required="" placeholder="Last name" formControlName="lastName">
+                      <div *ngIf="loginForm.controls.lastName.errors && loginForm.controls.lastName.touched && loginForm.controls.lastName.errors.required"
+                      class="text text-danger mt-1">
+                        Last Name required
+                      </div>
+                      <div *ngIf="loginForm.controls.lastName.touched && loginForm.controls.lastName.errors?.maxlength"
+                      class="text text-danger mt-1">
+                        Max 75 caracters
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-form-label">Email Address</label>
+                  <input class="form-control btn-pill" type="email" required email 
+                         autocomplete="new-password"
+                          placeholder="app@yourmail.com" formControlName="email">
+                    <div *ngIf="loginForm.controls.email.errors && loginForm.controls.email.touched && loginForm.controls.email.errors.required"
+                        class="text text-danger mt-1">
+                        El Email es requerido
+                    </div>
+                    <div *ngIf="loginForm.controls.email.errors && loginForm.controls.email.touched && loginForm.controls.email.errors?.email"
+                        class="text text-danger mt-1">
+                        Email con formato invalido
+                    </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-form-label">Password</label>
+                  <input class="form-control btn-pill" [type]="show ? 'text' : 'password'" formControlName="password" required="" placeholder="********">
+                  <div class="show-hide" (click)="showPassword()" *ngIf="!show"><span class="show"></span></div>
+                  <div class="show-hide" (click)="showPassword()" *ngIf="show"><span class="Hide"></span></div>
+                  <div *ngIf="loginForm.controls.password.touched && loginForm.controls.password.errors?.required"
+                        class="text text-danger mt-1">
+                        Password is required
+                  </div>
+                  <div *ngIf="loginForm.controls.password.touched && loginForm.controls.password.errors?.minlength"
+                      class="text text-danger mt-1">
+                      min 4 caracters
+                  </div>
+                  <div *ngIf="loginForm.controls.password.touched && loginForm.controls.password.errors?.maxlength"
+                      class="text text-danger mt-1">
+                      max 12 caracters
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-form-label">Password confirm</label>
+                  <input class="form-control btn-pill" [type]="show ? 'text' : 'password'" formControlName="confirmPassword" required="" placeholder="********">
+                  <div class="show-hide" (click)="showPassword()" *ngIf="!show"><span class="show"></span></div>
+                  <div class="show-hide" (click)="showPassword()" *ngIf="show"><span class="Hide"></span></div>
+                  <div *ngIf="loginForm.controls.confirmPassword.touched && loginForm.controls.confirmPassword.errors?.required || loginForm.controls.confirmPassword.value != loginForm.controls.password.value"
+                        class="text text-danger mt-1">
+                        Password is not the same
+                  </div>
+                  <div *ngIf="loginForm.controls.confirmPassword.touched && loginForm.controls.confirmPassword.errors?.minlength"
+                      class="text text-danger mt-1">
+                      min 4 caracters
+                  </div>
+                  <div *ngIf="loginForm.controls.confirmPassword.touched && loginForm.controls.confirmPassword.errors?.maxlength"
+                      class="text text-danger mt-1">
+                      min 12 caracters
+                  </div>
+                </div>
+                <!--<div class="form-group">
+                  <div class="form-check">
+                    <div class="animate-chk p-0">
+                      <input class="form-check-input" id="invalidCheck" type="checkbox" formControlName="termsAndConditions">
+                      <label class="form-check-label" for="invalidCheck" style="font-size:small;">Acepto <b class="text-info" (click)="termsAndConditionsInfo()">Condiciones</b> y <b class="text-info" (click)="privacyPoliciesInfo()">Políticas de privacidad</b> del comercio</label>
+                    </div>
+                    <div *ngIf="loginForm.get('termsAndConditions').invalid && loginForm.get('termsAndConditions').touched" class="text text-danger mt-1">
+                      Debes aceptar los términos y condiciones.
+                    </div>
+                  </div>
+                </div>-->
+                <div class="form-group mt-4">
+                  <!--
+                  <div class="checkbox p-0">
+                    <input id="checkbox1" type="checkbox">
+                    <label class="text-muted" for="checkbox1">Remember password</label>
+                  </div>-->
+                  
+                  <button  class="btn btn-primary d-block w-100 btn-pill"
+                    [disabled]="!loginForm.valid || loginForm.controls.confirmPassword.value != loginForm.controls.password.value"
+                    (click)="doLogin()"
+                    type="button"><span>Create Account</span>
+                  </button>
+                </div>
+                <p class="mt-4 mb-0">Already have an account?<a class="ms-2" [routerLink]="'/auth/login'">Sign in</a></p>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
