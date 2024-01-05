@@ -1,32 +1,57 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { ContentComponent } from "./shared/components/layout/content/content.component";
+import { LoginComponent } from './auth/login/login.component';
+import { RegisterComponent } from './auth/register/register.component';
+import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.component';
+import { ActivatePasswordComponent } from './auth/activate-password/activate-password.component';
+import { ExpiredComponent } from './auth/expired/expired.component';
 import { FullComponent } from "./shared/components/layout/full/full.component";
 import { full } from "./shared/routes/full.routes";
 import { content } from "./shared/routes/routes";
+import { AdminGuard } from './shared/guard/admin.guard';
 
 const routes: Routes = [
   {
-    path: "",
-    redirectTo: "simple-page/first-page",
-    pathMatch: "full",
+    path: '',
+    redirectTo: 'dashboard/default',
+    pathMatch: 'full'
   },
   {
-    path: "",
+    path: 'auth/login',
+    component: LoginComponent
+  },
+  {
+    path: 'auth/register',
+    component: RegisterComponent
+  },
+  {
+    path: 'auth/forgot-password',
+    component: ForgotPasswordComponent
+  },
+  {
+    path: 'auth/activate-password/:hash',
+    component: ActivatePasswordComponent
+  },
+  {
+    path: 'auth/expired',
+    component: ExpiredComponent
+  },
+  {
+    path: '',
     component: ContentComponent,
+    canActivate: [AdminGuard],
     children: content
-
   },
   {
-    path: "",
+    path: '',
     component: FullComponent,
+    canActivate: [AdminGuard],
     children: full
-
-
   },
   {
     path: "**",
-    redirectTo: "",
+    redirectTo: "dashboard/default",
   },
 ];
 

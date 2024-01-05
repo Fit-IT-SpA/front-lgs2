@@ -81,6 +81,20 @@ export class NavService implements OnDestroy {
 
   MENUITEMS: Menu[] = [
     {
+      headTitle1: "General",
+    },
+    {
+      title: "Dashboards",
+      icon: "home",
+      type: "sub",
+      badgeType: "light-primary",
+      badgeValue: "1",
+      active: true,
+      children: [
+        { path: "/dashboard/online-course", title: "Online course", type: "link" },
+      ],
+    },
+    /*{
       title: "Simple Page",
       icon: "home",
       type: "sub",
@@ -92,7 +106,7 @@ export class NavService implements OnDestroy {
         { path: "/simple-page/second-page", title: "Second Page", type: "link" },
       ],
     },
-    { path: "/single-page", icon: "search", title: "Single Page",  active: false, type: "link", bookmark: true },
+    { path: "/single-page", icon: "search", title: "Single Page",  active: false, type: "link", bookmark: true },*/
   ];
 
   // Array

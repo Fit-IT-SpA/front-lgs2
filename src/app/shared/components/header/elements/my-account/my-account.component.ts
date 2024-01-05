@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
+import { Session } from "src/app/shared/model/session";
 
 @Component({
   selector: "app-my-account",
@@ -7,18 +8,17 @@ import { Router } from "@angular/router";
   styleUrls: ["./my-account.component.scss"],
 })
 export class MyAccountComponent implements OnInit {
-  public userName: string;
+  public profile: Session;
   public profileImg: "assets/images/dashboard/profile.jpg";
 
   constructor(public router: Router) {
-    if (JSON.parse(localStorage.getItem("user"))) {
-    } else {
-    }
+    this.profile = JSON.parse(localStorage.getItem('profile'));
   }
 
   ngOnInit() {}
 
   logoutFunc() {
+    localStorage.removeItem("profile");
     this.router.navigateByUrl('auth/login');
   }
 }
