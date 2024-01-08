@@ -19,8 +19,11 @@ jobs:
       - name: npm configuration
         run: npm config set legacy-peer-deps true
 
-      - name: Install dependencies and build
-        run: npm ci && npm run build:dev
+      - name: Install dependencies
+        run: npm ci
+    
+      - name: Build
+        run: npm run build:dev-lgs
 
       - name: Install SSH Key
         uses: shimataro/ssh-key-action@v2.5.1
@@ -30,3 +33,10 @@ jobs:
 
       - name: Deploy using rsync
         run: rsync -avz ./dist/cuba/ ${{ secrets.FB7_SSH_USER }}@${{ secrets.FB7_SSH_HOST }}:/var/www/lgs
+      
+      - name: Archive npm failure logs
+        uses: actions/upload-artifact@v2
+        if: failure()
+        with:
+          name: npm-logs
+          path: ~/.npm/_logs
