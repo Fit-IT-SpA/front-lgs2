@@ -28,11 +28,11 @@ jobs:
       - name: Install SSH Key
         uses: shimataro/ssh-key-action@v2.5.1
         with:
-          key: ${{ secrets.FB7_SSH_PRIVATE_KEY }}
-          known_hosts: ${{ secrets.FB7_KNOWN_HOSTS }}
+          key: ${{ secrets.SUBDEV_SSH_PRIVATE_KEY }}
+          known_hosts: ${{ secrets.SUBDEV_KNOWN_HOSTS }}
 
       - name: Deploy using rsync
-        run: rsync -avz ./dist/cuba/ ${{ secrets.FB7_SSH_USER }}@${{ secrets.FB7_SSH_HOST }}:/var/www/lgs
+        run: rsync -avz ./dist/cuba/ ${{ secrets.SUBDEV_SSH_USER }}@${{ secrets.SUBDEV_SSH_HOST }}:/var/www/lgs
       
       - name: Archive npm failure logs
         uses: actions/upload-artifact@v2
