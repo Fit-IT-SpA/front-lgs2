@@ -46,6 +46,9 @@ jobs:
           key: ${{ secrets.KEY }}
           port: ${{ secrets.PORT }}
           script: ls -la
+      
+      - name: See runner
+        run: ls -la
 
       - name: Deploy using rsync
         run: rsync -avz ./dist/cuba/ ${{ secrets.SUBDEV_SSH_USER }}@${{ secrets.SUBDEV_SSH_HOST }}:/var/www/lgs
